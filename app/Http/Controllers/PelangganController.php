@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
@@ -59,9 +60,9 @@ class PelangganController extends Controller
         return view('admin.pelanggan.edit', $data);
     }
 
-/**
- * Update the specified resource in storage.
- */
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, string $id)
     {
         $pelanggan_id = $id;
@@ -78,11 +79,15 @@ class PelangganController extends Controller
         return redirect()->route('pelanggan.index')->with('success', 'Perubahan Data Berhasil!');
     }
 
-/**
- * Remove the specified resource from storage.
- */
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(string $id)
     {
-        //
+        $pelanggan = Pelanggan::findOrFail($id);
+
+        $pelanggan->delete();
+
+        return redirect()->route('pelanggan.index')->with('success', 'Data berhasil dihapus');
     }
 }

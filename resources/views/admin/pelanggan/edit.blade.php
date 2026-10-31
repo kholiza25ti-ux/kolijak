@@ -173,14 +173,14 @@
                 <div class="card border-0 shadow components-section">
                     <div class="card-body">
                         @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <strong>Data gagal divalidasi!</strong>
-                                <ul class="mb-0 mt-2">
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                        <div class="alert alert-danger">
+                            <strong>Data gagal divalidasi!</strong>
+                            <ul class="mb-0 mt-2">
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                         @endif
                         <form action="{{ route('pelanggan.update', $dataPelanggan->pelanggan_id) }}" method="POST">
                             @csrf
@@ -217,16 +217,10 @@
                                         <label for="gender" class="form-label">
                                             Gender
                                         </label>
-                                        <select id="gender" name="gender" class="form-select">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="1"
-                                                {{ $dataPelanggan->gender == '1' ? 'selected' : '' }}>
-                                                Laki-laki
-                                            </option>
-                                            <option value="2"
-                                                {{ $dataPelanggan->gender == '2' ? 'selected' : '' }}>
-                                                Perempuan
-                                            </option>
+                                        <select class="form-select mb-0" id="gender" name="gender" aria-label="Gender">
+                                            <option value="" disabled {{ empty($dataPelanggan->gender) ? 'selected' : '' }}>-- Pilih Gender --</option>
+                                            <option value="Female" {{ $dataPelanggan->gender == 'Female' ? 'selected' : '' }}>Female</option>
+                                            <option value="Male" {{ $dataPelanggan->gender == 'Male' ? 'selected' : '' }}>Male</option>
                                         </select>
                                     </div>
                                 </div>

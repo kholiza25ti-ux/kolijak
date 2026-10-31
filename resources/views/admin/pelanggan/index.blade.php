@@ -1,17 +1,6 @@
-WIRDATUN NABILAH, Now
-<!--
-=========================================================
-Volt Pro - Premium Bootstrap 5 Dashboard
-=========================================================
-Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
-Copyright 2021 Themesberg (https://www.themesberg.com)
-License (https://themesberg.com/licensing)
-Designed and coded by https://themesberg.com
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
--->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Primary Meta Tags -->
@@ -32,6 +21,7 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('assets-admin/css/volt.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
         <a class="navbar-brand me-lg-5" href="../../index.html">
@@ -343,19 +333,13 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
             </div>
         </div>
-       @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-        {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
-        <!-- SISIPKAN KODE NOTIFIKASI DI BARIS 346 -->
         @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         @endif
+        <!-- SISIPKAN KODE NOTIFIKASI DI BARIS 346 -->
 
         <div class="row">
             <div class="col-12 mb-4">
@@ -376,35 +360,37 @@ The above copyright notice and this permission notice shall be included in all c
                                 </thead>
                                 <tbody>
                                     @foreach ($dataPelanggan as $item)
-                                        <tr>
-                                            <td>{{ $item->firstname }}</td>
-                                            <td>{{ $item->last_name }}</td>
-                                            <td>{{ $item->birhday }}</td>
-                                            <td>{{ $item->gender }}</td>
-                                            <td>{{ $item->email }}</td>
-                                            <td>{{ $item->phone }}</td>
-                                            <td><td>
-    <!-- Tombol Edit -->
-    <a href="{{ route('pelanggan.edit', $item->pelanggan_id ?? $item->id) }}" class="btn btn-info btn-sm text-white me-1">
-        <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
-        </svg>
-        Edit
-    </a>
+                                    <tr>
+                                        <td>{{ $item->firstname }}</td>
+                                        <td>{{ $item->last_name }}</td>
+                                        <td>{{ $item->birhday }}</td>
+                                        <td>{{ $item->gender }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->phone }}</td>
+                                        <td>
+                                        <td>
+                                            <!-- Tombol Edit -->
+                                            <a href="{{ route('pelanggan.edit', $item->pelanggan_id ?? $item->id) }}" class="btn btn-info btn-sm text-white me-1">
+                                                <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                </svg>
+                                                Edit
+                                            </a>
 
-    <!-- Tombol Hapus -->
-    <form action="{{ route('pelanggan.destroy', $item->id ?? $item->pelanggan_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-    @csrf
-    @method('DELETE')
-    <button type="submit" class="btn btn-danger btn-sm text-white">
-        <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-        </svg>
-        Hapus
-    </button>
-</form>
-</td></td>
-                                        </tr>
+                                            <!-- Tombol Hapus -->
+                                            <form action="{{ route('pelanggan.destroy', $item->id ?? $item->pelanggan_id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm text-white">
+                                                    <svg class="icon icon-xs me-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                    </svg>
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </td>
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -446,4 +432,5 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- Volt JS -->
     <script src="{{ asset('assets-admin/js/volt.js') }}"></script>
 </body>
+
 </html>
