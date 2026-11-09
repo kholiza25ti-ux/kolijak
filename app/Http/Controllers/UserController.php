@@ -23,14 +23,15 @@ class UserController extends Controller
     // Menyimpan data user baru
     public function store(Request $request)
     {
+        // Validasi sesuai petunjuk Langkah 2
         $request->validate([
-            'name'     => 'required|string|max:255',
+            'name'     => 'required|string|max:100',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed', // dipadukan dengan name="password_confirmation"
+            'password' => 'required|min:8|confirmed', // min:8 & dipadukan dengan name="password_confirmation"
         ]);
 
         $data             = $request->all();
-        $data['password'] = Hash::make($request->password); // Encrypt password
+        $data['password'] = Hash::make($request->password); // Enkripsi password
 
         User::create($data);
 
@@ -49,17 +50,18 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        // Validasi umum untuk update
         $request->validate([
-            'name'  => 'required|string|max:255',
+            'name'  => 'required|string|max:100',
             'email' => 'required|email|unique:users,email,' . $id,
         ]);
 
         $data = $request->except(['password']);
 
-        // Jika password diisi, enkripsi dan update
+        // Jika password diisi saat edit, terapkan validasi min:8 & confirmed
         if ($request->filled('password')) {
             $request->validate([
-                'password' => 'min:6|confirmed',
+                'password' => 'min:8|confirmed',
             ]);
             $data['password'] = Hash::make($request->password);
         }
